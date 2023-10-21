@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+[data-theme='dark'] {
+  background-color: black;
+  color:white;
+}
+
+.toggle-container{
+  display:flex;
+  justify-content: right;
+}
+
+

@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { VStack, Heading, Input, Button, Flex } from "@chakra-ui/react";
+import styles from './css/styles.module.css';
+import { CustomisationContext } from '../Components/CustomisationContext';
 
 
 function CreateGame() {
     const [playerName, setPlayerName] = useState('');
     const [message, setMessage] = useState('');
+    
+
+    //retrieve settings from customisationcontext
+    const { accessibilityMode } = useContext(CustomisationContext);
+    const { fontSize } = useContext(CustomisationContext);
+    const { buttonSize } = useContext(CustomisationContext);
+    const {fontColor } = useContext(CustomisationContext);
+    const { buttonColor } = useContext(CustomisationContext);
+
+
+    //apply settings to accessibility mode
+    const headerStyle = accessibilityMode ? { fontSize, color: fontColor } : {};
+    const buttonStyle = accessibilityMode ? { fontSize: buttonSize, backgroundColor: buttonColor } : {};
+    
+
 
     const createGameSession = () => {
         axios.post('http://127.0.0.01:5000/game', { player1_name: playerName })
@@ -17,31 +33,19 @@ function CreateGame() {
                 setMessage("Failed to create a game. Please try again.");
             });
     }
-
+   
     return (
-        <div>
-            <Flex bgColor="black" minH="100vh" color="white" justifyContent="center" alignItems="center">
-                <VStack spacing={4} w="300px">
-                    <Heading as="h1" size="2xl">Tic-Tac-Toe</Heading> 
-                    <Input 
-                        placeholder="Enter Player Name" 
-                        _placeholder={{ color: 'gray.500', textAlign:'center' }}
-                        bg="white"
-                        color="black"
-                        size="lg"
-                        value={playerName}
-                        onChange={(e) => setPlayerName(e.target.value)}
-                    />
-                    
-                    <Button colorScheme="teal" w="100%" onClick={createGameSession}>
-                    Create Game
-                    </Button>
-                    
-                    <Button colorScheme="orange" w="100%" onClick={() => { /* logic to join game */ }}>
-                    Join Game
-                    </Button>
-                </VStack>
-            </Flex>
+        <div className={styles.flexcontainer}>
+            <div className={styles.stack}>
+                <h1 className={styles.heading} style={headerStyle}>Welcome!</h1>
+            
+                <button className={styles.btn1} style={buttonStyle} onClick={createGameSession}>
+                    Login 
+                </button>
+                <button className={styles.btn1} style={buttonStyle} onClick={() => { /* logic to join game */ }}>
+                    Register
+                </button> 
+            </div>
         </div>
     );
 }

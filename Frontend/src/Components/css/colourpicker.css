@@ -1,0 +1,36 @@
+.color-picker-button {
+    height: 50px;
+    width: 50px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.color-picker-content {
+    border: 5px solid #ccc;
+    border-radius: 4px;
+    background: #ccc;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    position: absolute;
+    z-index: 1000; 
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Adjust the transition duration as desired */
+}
+
+.color-picker-grid {
+    display: flex;
+    gap: 4px;
+}
+
+.color-picker-grid .color-picker-button {
+    margin: 0;
+}
+
+.color-picker-content.visible {
+    opacity: 1;
+    visibility: visible;
+}

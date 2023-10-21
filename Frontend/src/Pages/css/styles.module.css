@@ -1,0 +1,47 @@
+
+.flexcontainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.input {
+    background-color: lightgrey;
+    color: white;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+}
+
+.input::placeholder {
+    color: var(--placeholder-color);
+    text-align: center;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 16px;
+}
+
+.heading {
+    font-size: 1em;
+    justify-content:center;
+    display:flex;
+    color: grey;
+}
+
+.btn1 {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: pink;
+    width: 110%;
+    cursor: pointer;
+}
