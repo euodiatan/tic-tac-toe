@@ -12,6 +12,7 @@ export const CustomisationProvider = ({ children }) => {
   const [buttonColor, setButtonColor] = useState(localStorage.getItem('buttonColor') || '#005C2B');
   const [colorMode, setColorMode] = useState(localStorage.getItem('colorMode') || 'dark');
 
+  //Don't touch this, it is for the accessibility toggle button.
   const [accessibilityMode, setAccessibilityMode] = useState(() => {
     const storedAccessibilityMode = JSON.parse(localStorage.getItem('accessibilityMode'));
     return storedAccessibilityMode !== null ? storedAccessibilityMode : false;
@@ -23,11 +24,12 @@ export const CustomisationProvider = ({ children }) => {
   };
 
   // Use the useEffect hook to update localStorage whenever the customisation settings change.
-   // If you add more customisable elements, remember to save their values to localStorage here. Update this!
+  
    useEffect(() => {
     localStorage.setItem('accessibilityMode', JSON.stringify(accessibilityMode));
   }, [accessibilityMode]);
 
+  // If you add more customisable elements, remember to save their values to localStorage here. Update this!
    useEffect(() => {
     if(colorMode === 'dark') {
       document.documentElement.setAttribute('data-theme', colorMode);
@@ -40,10 +42,9 @@ export const CustomisationProvider = ({ children }) => {
     localStorage.setItem('buttonColor', buttonColor);
     localStorage.setItem('fontColor', fontColor);
 
-    
-   
-
-  }, [buttonSize, fontSize, buttonColor, fontColor,  colorMode, accessibilityMode]); // Update this!
+  }, [buttonSize, fontSize, buttonColor, fontColor,  colorMode, accessibilityMode]); // Update this to enable saving of settings whenever it changes!
+  
+  //Update the provider values so it can apply to your entire application
   return (
     <CustomisationContext.Provider value={{ buttonSize, setButtonSize, fontSize, setFontSize, fontColor, setFontColor, buttonColor, setButtonColor, colorMode, accessibilityMode, toggleAccessibilityMode, setColorMode
        }}> 

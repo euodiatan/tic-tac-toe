@@ -9,7 +9,7 @@ function CreateGame() {
     const [message, setMessage] = useState('');
     
 
-    //retrieve settings from customisationcontext
+    //Retrieve settings from CustomisationContext. Update this!
     const { accessibilityMode } = useContext(CustomisationContext);
     const { fontSize } = useContext(CustomisationContext);
     const { buttonSize } = useContext(CustomisationContext);
@@ -17,7 +17,7 @@ function CreateGame() {
     const { buttonColor } = useContext(CustomisationContext);
 
 
-    //apply settings to accessibility mode
+    //Apply settings retrieved from CustomisationContext to specific attributes of specific elements, to be displayed depending on toggling of accessibility mode. Update this!
     const headerStyle = accessibilityMode ? { fontSize, color: fontColor } : {};
     const buttonStyle = accessibilityMode ? { fontSize: buttonSize, backgroundColor: buttonColor } : {};
     
@@ -33,12 +33,11 @@ function CreateGame() {
                 setMessage("Failed to create a game. Please try again.");
             });
     }
-   
+   //Apply the inline styles based on the accessibility mode settings deefined above.
     return (
         <div className={styles.flexcontainer}>
             <div className={styles.stack}>
                 <h1 className={styles.heading} style={headerStyle}>Welcome!</h1>
-            
                 <button className={styles.btn1} style={buttonStyle} onClick={createGameSession}>
                     Login 
                 </button>

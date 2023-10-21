@@ -5,9 +5,10 @@ import styles from './css/customisationpage.module.css';
 
 
 export default function CustomisationPage() {
+    //Update the state values you set in CustomisationContext here to access and save them according to user input.
     const { buttonSize, setButtonSize, fontSize, setFontSize, fontColor, setFontColor, buttonColor, setButtonColor, colorMode, setColorMode } = useCustomisation();
 
-    
+    //Create functions to handle changing of customisation based on user's toggling.
     const toggleButtonSize = () => {
         const newSize = buttonSize === '2.5rem' ? '3rem' : '2.5rem';
         setButtonSize(newSize);
@@ -26,17 +27,19 @@ export default function CustomisationPage() {
         setButtonColor(newColor);
     };
 
+    //This is for dark mode. Don't touch this.
     const toggleColorMode = () => {
         if (colorMode === 'light') {
           setColorMode('dark');
         } else {
           setColorMode('light');  
-          document.documentElement.removeAttribute('data-theme'); // Remove the data-theme attribute
+          document.documentElement.removeAttribute('data-theme'); 
         }
       };
     
       
-
+      //Below, make sure the interactable components run the function you specified above when onChange is triggered.
+      //The colorpicker value should be edited for the element you wish to change.
     return (
         <div className={styles.customisationcontainer}>
             <div className={styles.colorssection}>
